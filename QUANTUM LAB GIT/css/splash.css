@@ -1,0 +1,310 @@
+/* ══ SPLASH SCREEN — Creative Vibrant Theme ══ */
+
+/* Atom Loader Variables - QuantumLab Purple Theme */
+:root {
+  --atom-size: 340px;
+  --atom-color-hex: #a855f7;
+  --atom-color-rgb: 168, 85, 247;
+  --nucleus-size: calc(var(--atom-size) / 2.5);
+  --electron-color-hex: #f472b6;
+  --electron-size: calc(var(--atom-size) / 25);
+  --electron-orbit-size: calc(var(--atom-size) / 2.5);
+  --electron-speed: 1.2s;
+  --electron-speed-alpha: 1s;
+  --electron-speed-omega: .8s;
+}
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0f0a1a 0%, #1a1225 50%, #0f0a1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  overflow: hidden;
+}
+
+/* Animated glow background */
+#splash-screen::before {
+  content: '';
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, transparent 70%);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+#splash-screen::after {
+  content: '';
+  position: absolute;
+  top: 32%;
+  left: 38%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.12) 0%, transparent 70%);
+  animation: glowPulse 5s ease-in-out infinite reverse;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+#splash-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.splash-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.atom-container {
+  width: 340px;
+  height: 340px;
+  margin-top: -130px;
+  margin-bottom: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Atom Loader by alterebro - Adapted to QuantumLab colors */
+.atom {
+  position: relative;
+  width: var(--atom-size);
+  height: var(--atom-size);
+  animation: 8s atom infinite cubic-bezier(1, .25, 0, .75);
+}
+@keyframes atom {
+  0% { transform: rotate(0deg) scale(1); }
+  12.5% { transform: rotate(-45deg) scale(.9); }
+  25% { transform: rotate(-90deg) scale(1); }
+  37.5% { transform: rotate(-135deg) scale(.9); }
+  50% { transform: rotate(-180deg) scale(1); }
+  62.5% { transform: rotate(-225deg) scale(.9); }
+  75% { transform: rotate(-270deg) scale(1); }
+  87.5% { transform: rotate(-315deg) scale(.9); }
+  100% { transform: rotate(-360deg) scale(1); }
+}
+
+.atom::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--nucleus-size);
+  height: var(--nucleus-size);
+  margin-top: calc(var(--nucleus-size) / -2);
+  margin-left: calc(var(--nucleus-size) / -2);
+  background: url('../resources/UIS.png') center/contain no-repeat;
+  border-radius: 0;
+  animation: 2s nucleus infinite cubic-bezier(.65, 0, .35, 1);
+}
+@keyframes nucleus {
+  0% { transform: scale(1); }
+  25% { transform: scale(.9); }
+  50% { transform: scale(1); }
+  75% { transform: scale(.85); }
+  100% { transform: scale(1); }
+}
+
+.atom > [class^="electron"] {
+  border-top: solid rgba(var(--atom-color-rgb), .5) 1px;
+  border-right: solid rgba(var(--atom-color-rgb), .35) 2px;
+  border-bottom: solid rgba(var(--atom-color-rgb), .2) 4px;
+  border-left: solid rgba(var(--atom-color-rgb), 0) 2px;
+  border-radius: 100%;
+  width: 100%;
+  height: var(--electron-orbit-size);
+  position: absolute;
+  top: 50%;
+  margin-top: calc(var(--electron-orbit-size) / -2);
+  animation: var(--electron-speed) electron-orbit infinite linear;
+}
+.atom > .electron-alpha {
+  transform: rotate(60deg);
+  animation: var(--electron-speed-alpha) electron-orbit infinite linear;
+}
+.atom > .electron-omega {
+  transform: rotate(-60deg);
+  animation: var(--electron-speed-omega) electron-orbit infinite linear;
+}
+@keyframes electron-orbit {
+  0% {
+    border-top: solid rgba(var(--atom-color-rgb), .5) 1px;
+    border-right: solid rgba(var(--atom-color-rgb), .35) 2px;
+    border-bottom: solid rgba(var(--atom-color-rgb), .2) 4px;
+    border-left: solid rgba(var(--atom-color-rgb), 0) 2px;
+  }
+  25% {
+    border-top: solid rgba(var(--atom-color-rgb), .35) 1px;
+    border-right: solid rgba(var(--atom-color-rgb), .2) 2px;
+    border-bottom: solid rgba(var(--atom-color-rgb), 0) 4px;
+    border-left: solid rgba(var(--atom-color-rgb), .5) 2px;
+  }
+  50% {
+    border-top: solid rgba(var(--atom-color-rgb), .2) 1px;
+    border-right: solid rgba(var(--atom-color-rgb), 0) 2px;
+    border-bottom: solid rgba(var(--atom-color-rgb), .5) 4px;
+    border-left: solid rgba(var(--atom-color-rgb), .35) 2px;
+  }
+  75% {
+    border-top: solid rgba(var(--atom-color-rgb), 0) 1px;
+    border-right: solid rgba(var(--atom-color-rgb), .5) 2px;
+    border-bottom: solid rgba(var(--atom-color-rgb), .35) 4px;
+    border-left: solid rgba(var(--atom-color-rgb), .2) 2px;
+  }
+  100% {
+    border-top: solid rgba(var(--atom-color-rgb), .5) 1px;
+    border-right: solid rgba(var(--atom-color-rgb), .35) 2px;
+    border-bottom: solid rgba(var(--atom-color-rgb), .2) 4px;
+    border-left: solid rgba(var(--atom-color-rgb), 0) 2px;
+  }
+}
+
+.atom [class^="electron"]::after {
+  content: '';
+  display: block;
+  width: var(--electron-size);
+  height: var(--electron-size);
+  background: var(--electron-color-hex);
+  border-radius: 50%;
+  margin-top: calc(var(--electron-size) / -2);
+  position: absolute;
+  top: 50%;
+  left: calc(var(--electron-size) / -1);
+  transform: scale(1);
+  animation: calc(var(--electron-speed) * 2) electron infinite ease-in-out;
+}
+.atom .electron-alpha::after { animation: calc(var(--electron-speed-alpha) * 2) electron infinite ease-in-out; }
+.atom .electron-omega::after { animation: calc(var(--electron-speed-omega) * 2) electron infinite ease-in-out; }
+@keyframes electron {
+  0% { left: calc(var(--electron-size) / -1); transform: scale(1); }
+  12.5% { top: 100%; transform: scale(1.5); }
+  25% { left: 100%; transform: scale(1); }
+  37.5% { top: 0%; transform: scale(.25); }
+  50% { left: calc(var(--electron-size) / -1); transform: scale(1); }
+  62.5% { top: 100%; transform: scale(1.5); }
+  75% { left: 100%; transform: scale(1); }
+  87.5% { top: 0%; transform: scale(.25); }
+  100% { left: calc(var(--electron-size) / -1); transform: scale(1); }
+}
+
+.app-title {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a855f7, #22d3ee, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 4px;
+  margin: 15px 0 0;
+  line-height: 1.15;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 16px;
+  letter-spacing: 10px;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.progress-container {
+  width: 280px;
+  margin-top: 25px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(168, 85, 247, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a855f7, #22d3ee, #f472b6, #a855f7);
+  background-size: 200% 100%;
+  width: 0%;
+  animation: progress 6s ease-in-out infinite;
+}
+
+@keyframes progress {
+  0% { width: 0%; background-position: 100% 0; }
+  15% { width: 30%; }
+  25% { width: 25%; }
+  40% { width: 60%; }
+  55% { width: 50%; }
+  70% { width: 85%; }
+  80% { width: 75%; }
+  90% { width: 95%; }
+  100% { width: 100%; background-position: 100% 0; }
+}
+
+.loading-status {
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 14px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.loading-quote {
+  color: #94a3b8;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 16px;
+  opacity: 0.9;
+  line-height: 1.6;
+  max-width: 340px;
+}
+
+.developed-by {
+  color: #475569;
+  font-size: 13px;
+  margin-top: 30px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 500px) {
+  .atom-container {
+    width: 240px;
+    height: 240px;
+  }
+  .app-title {
+    font-size: 42px;
+    letter-spacing: 3px;
+  }
+  .subtitle {
+    font-size: 14px;
+    letter-spacing: 8px;
+  }
+}
