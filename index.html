@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>QuantumLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/calc.css">
+  <link rel="stylesheet" href="css/learn.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="css/quantum.css">
+  <link rel="stylesheet" href="css/splash.css">
+</head>
+<body>
+
+  <!-- ══ SPLASH SCREEN ══ -->
+  <div id="splash-screen">
+    <div class="splash-container">
+      <div class="atom-container">
+        <div class="atom">
+          <div class="electron"></div>
+          <div class="electron-alpha"></div>
+          <div class="electron-omega"></div>
+        </div>
+      </div>
+      <h1 class="app-title">QUANTUM<br>LAB</h1>
+      <div class="subtitle">Chemistry</div>
+      <div class="progress-container">
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <p class="loading-status">Loading</p>
+        <p class="loading-quote">The most damaging phrase in the language is: "We've always done it this way." — Grace Hopper</p>
+      </div>
+      <p class="developed-by">Developed By Juan Diego Silva</p>
+    </div>
+  </div>
+
+  <!-- ══ BACKGROUND PARTICLES ══ -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ══ APP SHELL ══ -->
+  <div id="app">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <span class="topbar-logo">🧬 QuantumLab</span>
+      <span class="topbar-sub" id="page-title">Calculadora</span>
+      <span class="secret-lock" onclick="document.getElementById('secret-code').focus()">🔐</span>
+      <input type="text" id="secret-code" class="secret-input" maxlength="8">
+    </div>
+
+    <!-- PAGES -->
+    <main id="main-content">
+
+      <!-- PAGE 1: CALCULADORA -->
+      <div class="page active" id="page-calc">
+        <div id="calc-root"></div>
+      </div>
+
+      <!-- PAGE 2: NÚMEROS CUÁNTICOS -->
+      <div class="page" id="page-quantum">
+        <div id="quantum-root"></div>
+      </div>
+
+      <!-- PAGE 3: APRENDIZAJE -->
+      <div class="page" id="page-learn">
+        <div id="learn-root"></div>
+      </div>
+
+      <!-- PAGE 4: EVALUACIÓN -->
+      <div class="page" id="page-quiz">
+        <div id="quiz-root"></div>
+      </div>
+
+    </main>
+
+    <!-- BOTTOM NAVBAR -->
+    <nav class="navbar">
+      <button class="nav-btn active" data-page="calc" onclick="navigateTo('calc')">
+        <span class="nav-icon">⚖</span>
+        <span class="nav-label">Calculadora</span>
+      </button>
+      <button class="nav-btn" data-page="quantum" onclick="navigateTo('quantum')">
+        <span class="nav-icon">⚛</span>
+        <span class="nav-label">Cuánticos</span>
+      </button>
+      <button class="nav-btn" data-page="learn" onclick="navigateTo('learn')">
+        <span class="nav-icon">📖</span>
+        <span class="nav-label">Aprender</span>
+      </button>
+      <button class="nav-btn" data-page="quiz" onclick="navigateTo('quiz')">
+        <span class="nav-icon">🧪</span>
+        <span class="nav-label">Evaluar</span>
+      </button>
+    </nav>
+
+  </div>
+
+
+
+  <!-- SCRIPTS -->
+  <script src="js/elements.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/quantum.js"></script>
+  <script src="js/learn.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/bg.js"></script>
+  <script>
+    // Boot
+    renderCalc();
+    renderQuantum();
+    renderLearn();
+    renderQuiz();
+    initBg();
+    
+    // Hide splash screen after everything loads
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('splash-screen').classList.add('hide');
+        setTimeout(function() {
+          document.getElementById('splash-screen').style.display = 'none';
+        }, 500);
+      }, 6000);
+    });
+
+    // Secret code handler
+    document.getElementById('secret-code').addEventListener('input', function(e) {
+      const code = e.target.value.replace(/\D/g, '');
+      const validCodes = ['051025', '05102025', '51025', '5102025'];
+      if (validCodes.includes(code)) {
+        showSecretModal();
+        e.target.value = '';
+      }
+    });
+
+    function showSecretModal() {
+      document.getElementById('secret-modal').classList.add('show');
+    }
+
+    function closeSecretModal() {
+      document.getElementById('secret-modal').classList.remove('show');
+    }
+
+    function showSecretInput() {
+      document.querySelector('.topbar').classList.add('input-active');
+      setTimeout(() => document.getElementById('secret-code').focus(), 100);
+    }
+
+    function hideSecretInput() {
+      document.querySelector('.topbar').classList.remove('input-active');
+    }
+
+    // Close modal on background click
+    document.getElementById('secret-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeSecretModal();
+    });
+  </script>
+</body>
+</html>
