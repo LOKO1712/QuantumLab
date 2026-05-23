@@ -35,6 +35,6 @@ Abre `index.html` con **Live Server** en VS Code, o directamente en Chrome.
 | **Calculadora** | ⚗ | Moles↔gramos, fórmula empírica (% o g), fórmula molecular (análisis combustión), hidratos |
 | **Cuánticos** | ⚛ | Config electrónica → N. cuánticos y viceversa, búsqueda de 118 elementos |
 | **Aprender** | 📖 | Explicaciones de moles, fórmulas, hidratos y números cuánticos con ejemplos |
-| **Evaluar** | 🧪 | 20 preguntas de opción múltiple con retroalimentación y filtro por tema |
+| **Evaluar** | 🧪 | 30 preguntas de opción múltiple con retroalimentación y filtro por tema |
 
 ## Sin dependencias — HTML/CSS/JS vanilla puro.
