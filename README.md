@@ -21,7 +21,7 @@ quantumlab/
     ├── calc.js        ← Calculadora (moles, empírica, molecular, hidratos)
     ├── quantum.js     ← Números cuánticos ↔ config electrónica
     ├── learn.js       ← Sección de aprendizaje
-    └── quiz.js        ← Evaluación con 20 preguntas
+    └── quiz.js        ← Evaluación con 30 preguntas retroalientadas
 ```
 
 ## 🚀 Cómo usar
